@@ -2,6 +2,7 @@ package com.chenning.springbootlearn.MybatisPlusDemonTest.qrtz;
 
 import com.chenning.springbootlearn.SpringBootLearnApplication;
 import com.chenning.springbootlearn.quartz.config.SpringContextUtils;
+import com.chenning.springbootlearn.quartz.mapper.JobMapper;
 import com.chenning.springbootlearn.quartz.model.ScheduleJob;
 import com.chenning.springbootlearn.quartz.service.QuartzService;
 import lombok.extern.java.Log;
@@ -12,6 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * @author: Mr.Chen
  * @create: 2021-02-04 15:06
@@ -20,6 +24,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @Log
 public class QuartzJobTest {
+    @Autowired
+    JobMapper mapper;
+
+
     @Autowired(required = false)
     private QuartzService quartzService;
 
@@ -48,7 +56,7 @@ public class QuartzJobTest {
 
     @Test
     public void run() {    //启动
-        quartzService.runJob(1);
+        quartzService.runJob(3);
     }
 
     @Test
@@ -66,4 +74,14 @@ public class QuartzJobTest {
         quartzService.pausejob(1);
     }
 
+
+
+
+
+    @Test
+    public void showJob(){
+        List<ScheduleJob> jobs = mapper.selectList(null);
+        List<Integer> jobIDs = jobs.stream().map(scheduleJob -> scheduleJob.getJobId()).collect(Collectors.toList());
+        System.out.println("当前的Job有"+jobIDs);
+    }
 }
