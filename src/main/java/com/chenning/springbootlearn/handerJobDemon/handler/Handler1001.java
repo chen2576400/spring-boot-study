@@ -1,6 +1,7 @@
 package com.chenning.springbootlearn.handerJobDemon.handler;
 
 import com.chenning.springbootlearn.demonBuild.service.UserService;
+import com.chenning.springbootlearn.handerJobDemon.DemonModel;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Map;
@@ -15,9 +16,10 @@ public class Handler1001 extends BaseHandler {
 
     @Override
     public void handler(Map<String, Object> params) {
-
+        DemonModel model = getDemonModel();
         String parm = params.get("parm").toString();
 
         System.out.println("我是Handler1001参数parm值为============>" + parm);
+        System.out.println("我是Handler  Mode============>" + model);
     }
 }
