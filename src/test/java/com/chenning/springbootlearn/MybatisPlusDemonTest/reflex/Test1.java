@@ -18,9 +18,13 @@ import java.lang.reflect.Method;
  **/
 @SpringBootTest(classes = SpringBootLearnApplication.class)
 @RunWith(SpringRunner.class)
-public class reflectionMethodtTest {
-
-
+public class Test1 {
+    /**
+     * Field getField(name)：根据字段名获取某个public的field（包括父类）
+     * Field getDeclaredField(name)：根据字段名获取当前类的某个field（不包括父类）
+     * Field[] getFields()：获取所有public的field（包括父类）
+     * Field[] getDeclaredFields()：获取当前类的所有field（不包括父类）
+     */
     @SneakyThrows
     @Test
     public void test() {
@@ -29,9 +33,10 @@ public class reflectionMethodtTest {
         user.setUserName("哮天犬");
         Method method = null;
 
-        Class<?> aClass = Class.forName("com.chenning.springbootlearn.reflex.model.service.BaseService");
+        Class<?> aClass;
+//               aClass = Class.forName("com.chenning.springbootlearn.reflex.model.service.BaseService");
 //            aClass = SpringContextUtils.getBean(BaseService.class).getClass();//这种方式前提该Demon1类要交给spring管理
-//            aClass=Demon1.class;
+        aClass = BaseService.class;
 
         /* getDeclaredMethod 可以获取任意方法 像，protected修饰的getMethod 只可以获取 修饰符为 public 的方法*/
         method = aClass.getDeclaredMethod("x", User.class);
@@ -44,10 +49,6 @@ public class reflectionMethodtTest {
         method.invoke(SpringContextUtils.getBean(BaseService.class), user);
 
     }
-
-
-
-
 
 
 }

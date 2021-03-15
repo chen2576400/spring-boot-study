@@ -1,7 +1,9 @@
 package com.chenning.springbootlearn.reflex.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.lang.reflect.Method;
 
@@ -11,6 +13,8 @@ import java.lang.reflect.Method;
  **/
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class AgentEntity {
     private Object object;  //类名
     private Method method; //方法名
