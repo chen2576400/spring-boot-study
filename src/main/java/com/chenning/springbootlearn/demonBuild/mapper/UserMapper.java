@@ -2,8 +2,13 @@ package com.chenning.springbootlearn.demonBuild.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.chenning.springbootlearn.demonBuild.model.User;
+import com.chenning.springbootlearn.demonBuild.model.UserVo;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -18,5 +23,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Mapper
 public interface UserMapper extends BaseMapper<User> {
+    List<UserVo>  findUserAndCard();
+    List<UserVo>  findUserAndCardByID(@Param("id") Integer userID);
+    List<UserVo>  findUserAndCardInIDs(@Param("ids") List<Integer> userIDs);
+
+    List<UserVo>  findUserAndCardByModelParm(@Param("map")Map map);
+
 
 }
