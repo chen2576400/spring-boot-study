@@ -48,7 +48,6 @@ public class Test2 {
     @SneakyThrows
     @Test
     public  void  danceTest(){
-        String parm1="我是第一个参数";
         User parm2 = new User();
         parm2.setUserId(2);
         parm2.setUserName("二郎神");
@@ -56,8 +55,8 @@ public class Test2 {
         /**
          *  singService 和 danceService都  继承了 BaseService 所以反射时候可以用子类接收父类的方法
          */
-        Method method = MethodUntil.getMethod(DanceService.class, "doSomeThingBySing",String.class, User.class);
-        AgentEntity agentEntity = AgentEntity.builder().method(method).object(SpringContextUtils.getBean(BaseService.class)).args(new Object[]{parm1, parm2}).build();
+        Method method = MethodUntil.getMethod(DanceService.class, "doSomeThingByDance",String.class, User.class);
+        AgentEntity agentEntity = AgentEntity.builder().method(method).object(SpringContextUtils.getBean(BaseService.class)).args(new Object[]{parm2}).build();
 
 //        super.add(agentEntity);  将需要反射执行的放入队列  每调用一次添加到队列里
     }
