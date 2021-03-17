@@ -64,4 +64,16 @@ public class CompletableFutureTest {
         LOGGER.info(JSON.toJSONString(list));
         LOGGER.info("================================>>>>>>>>>>>test end");
     }
+
+
+    /**
+     * 执行某个方法
+     */
+    @Test
+    public void test5() {
+        LOGGER.info("================================>>>>>>>>>>>test start");
+        List<Integer> list = CompletableFutureDemo.completableFutureDemo4();
+        LOGGER.info(JSON.toJSONString(list));
+        LOGGER.info("================================>>>>>>>>>>>test end");
+    }
 }

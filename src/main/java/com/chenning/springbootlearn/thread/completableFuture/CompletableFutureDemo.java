@@ -164,4 +164,35 @@ public class CompletableFutureDemo {
     }
 
 
+    /**
+     * 传统调用某个方法 写法回调
+     *
+     * @return
+     */
+    public static List<Integer> completableFutureDemo4() {
+        List<CompletableFuture<Integer>> futures = new ArrayList<>();
+        for ( int i = 0; i < 5; i++) {
+            final Integer k=i;
+            CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
+                try {
+                    Integer integer = taskJob(k);
+                    return integer;
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }).exceptionally(throwable -> {
+                System.out.println(new Timestamp(System.currentTimeMillis())+"出错了呀======");return 100;}).whenComplete((integer, throwable) -> System.out.println("程序执行完毕后=========>" + new Timestamp(System.currentTimeMillis()) + "()" + integer));
+            futures.add(future);
+        }
+          return futures.stream()
+                .map(CompletableFuture::join)
+                .collect(Collectors.toList());
+    }
+
+
+    public static Integer taskJob(Integer i) throws InterruptedException {
+        TimeUnit.SECONDS.sleep(10);
+        return 5/0;
+    }
 }
