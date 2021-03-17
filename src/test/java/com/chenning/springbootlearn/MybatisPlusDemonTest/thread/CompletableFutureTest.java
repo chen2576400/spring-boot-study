@@ -14,10 +14,11 @@ import java.util.List;
  * @date 2021/3/16 17:19
  */
 
-
 public class CompletableFutureTest {
     /**相关文档
      * https://blog.csdn.net/finalheart/article/details/87615546
+     *
+     * 每调用一次Future的get或者join方法 都相当于阻塞取值。 所以要先把futureList先组装成集合再取   lamada不能直接在结果集上遍历取值 否则循环一直阻塞一次
      */
     private static final Logger LOGGER = LoggerFactory.getLogger(CompletableFutureTest.class);
 
@@ -67,12 +68,24 @@ public class CompletableFutureTest {
 
 
     /**
-     * 执行某个方法
+     * 执行某个方法  for
      */
     @Test
     public void test5() {
         LOGGER.info("================================>>>>>>>>>>>test start");
         List<Integer> list = CompletableFutureDemo.completableFutureDemo4();
+        LOGGER.info(JSON.toJSONString(list));
+        LOGGER.info("================================>>>>>>>>>>>test end");
+    }
+
+
+    /**
+     * 执行某个方法  lamada
+     */
+    @Test
+    public void test6() {
+        LOGGER.info("================================>>>>>>>>>>>test start");
+        List<Integer> list = CompletableFutureDemo.completableFutureDemo5();
         LOGGER.info(JSON.toJSONString(list));
         LOGGER.info("================================>>>>>>>>>>>test end");
     }

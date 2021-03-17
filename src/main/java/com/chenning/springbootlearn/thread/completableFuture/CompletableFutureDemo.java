@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author nchen
@@ -171,8 +172,8 @@ public class CompletableFutureDemo {
      */
     public static List<Integer> completableFutureDemo4() {
         List<CompletableFuture<Integer>> futures = new ArrayList<>();
-        for ( int i = 0; i < 5; i++) {
-            final Integer k=i;
+        for (int i = 0; i < 5; i++) {
+            final Integer k = i;
             CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
                 try {
                     Integer integer = taskJob(k);
@@ -182,10 +183,34 @@ public class CompletableFutureDemo {
                 }
                 return null;
             }).exceptionally(throwable -> {
-                System.out.println(new Timestamp(System.currentTimeMillis())+"出错了呀======");return 100;}).whenComplete((integer, throwable) -> System.out.println("程序执行完毕后=========>" + new Timestamp(System.currentTimeMillis()) + "()" + integer));
+                System.out.println(new Timestamp(System.currentTimeMillis()) + "出错了呀======");
+                return 100;
+            }).whenComplete((integer, throwable) -> System.out.println("程序执行完毕后=========>" + new Timestamp(System.currentTimeMillis()) + "()" + integer));
             futures.add(future);
         }
-          return futures.stream()
+        return futures.stream()
+                .map(CompletableFuture::join)
+                .collect(Collectors.toList());
+    }
+
+
+    public static List<Integer> completableFutureDemo5() {
+        List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
+        List<CompletableFuture<Integer>> completableFutures = list.stream().map(integer -> CompletableFuture.supplyAsync(() -> {
+            try {
+                return taskJob(integer);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }).exceptionally(throwable -> {
+            System.out.println(new Timestamp(System.currentTimeMillis()) + "出错了呀======");
+            return 100;
+        }).whenComplete((integer1, throwable) -> {
+            System.out.println("程序执行完毕后=========>" + new Timestamp(System.currentTimeMillis()) + "()" + integer);
+        })).collect(Collectors.toList());
+
+        return completableFutures.stream()
                 .map(CompletableFuture::join)
                 .collect(Collectors.toList());
     }
@@ -193,6 +218,6 @@ public class CompletableFutureDemo {
 
     public static Integer taskJob(Integer i) throws InterruptedException {
         TimeUnit.SECONDS.sleep(10);
-        return 5/0;
+        return 5 / 0;
     }
 }
