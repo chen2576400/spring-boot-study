@@ -33,4 +33,12 @@ public class FutureDemoTests {
     public void testFutureList() throws Exception {
         FutureDemo.testFutureList();
     }
+
+
+
+    @Test
+    public void testFutureLamada() throws Exception {
+        FutureDemo.testLamada();
+    }
+
 }
