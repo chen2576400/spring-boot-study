@@ -116,7 +116,7 @@
             <version>${commons-lang-version}</version>
         </dependency>
 
-        <!-- RabbitMq-->
+        <!-- RabbitMq  不用时记得注释-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
