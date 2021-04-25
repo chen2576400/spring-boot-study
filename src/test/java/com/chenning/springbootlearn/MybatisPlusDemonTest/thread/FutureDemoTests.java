@@ -12,7 +12,8 @@ public class FutureDemoTests {
 
     /**
      * future测试 task睡眠10s
-     *由于循环里面阻塞获取 所以和同步执行耗时相同
+     * 由于循环里面阻塞获取 所以和同步执行耗时相同
+     *
      * @throws Exception e
      */
     @Test
@@ -21,12 +22,10 @@ public class FutureDemoTests {
     }
 
 
-
-
-
     /**
      * future测试 task睡眠10s
-     *多线程执行 将异步执行结果收集  再遍历获取
+     * 多线程执行 将异步执行结果收集  再遍历获取
+     *
      * @throws Exception e
      */
     @Test
@@ -35,10 +34,16 @@ public class FutureDemoTests {
     }
 
 
-
     @Test
     public void testFutureLamada() throws Exception {
         FutureDemo.testLamada();
     }
+
+
+    @Test
+    public void testList() throws Exception {
+        FutureDemo.testList(7);
+    }
+
 
 }
