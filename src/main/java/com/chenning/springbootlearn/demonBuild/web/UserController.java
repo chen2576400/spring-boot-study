@@ -35,10 +35,15 @@ public class UserController {
     }
 
     @RequestMapping("/findAllUserByID")
-    public List<UserVo> findUserAndCardByID(Integer id) {
+    public List<UserVo> findUserAndCardByID(Integer id,String s) {
         return userService.findUserAndCardByID(id);
     }
 
+    /**
+     * postMan 调用是  传的是json  这种不属于对象  不能id:1传参  直接写  1
+     * @param id
+     * @return
+     */
     @RequestMapping("/findUserAndCardByID1")
     public List<UserVo> findUserAndCardByID1(@RequestBody Integer id) {
         return userService.findUserAndCardByID(id);

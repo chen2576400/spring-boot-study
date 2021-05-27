@@ -176,6 +176,11 @@ public class FutureDemo {
     private static<T> List<T> getList(List<T> list, int start, int end) {
         List<T> list1 = new ArrayList<>();
         for (int i = start; i < end; i++) {
+            try {
+                TimeUnit.MILLISECONDS.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             T num = list.get(i);
             list1.add(num);
         }
