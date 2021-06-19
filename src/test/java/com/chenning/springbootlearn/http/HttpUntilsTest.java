@@ -51,13 +51,13 @@ public class HttpUntilsTest {
     @Test
     public void doGet1() {
         HttpRequest httpRequest = HttpRequest.get("http://localhost:6666/user/findUserAndCardByID1")
-                .send(JSON.toJSONString(1))  //要传入的json 参数
                 .trustAllCerts()
                 .trustAllHosts()
                 .accept("application/json, text/plain, */*")
                 .contentType("application/json", HttpRequest.CHARSET_UTF8)
                 .readTimeout(30 * 1000)
-                .connectTimeout(30 * 100);
+                .connectTimeout(30 * 100)
+          .send(JSON.toJSONString(1));  //要传入的json 参数
 
         String response = httpRequest.getResponse();
         System.out.println(response);
