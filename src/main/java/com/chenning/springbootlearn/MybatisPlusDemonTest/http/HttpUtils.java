@@ -1,4 +1,4 @@
-package com.chenning.springbootlearn.http;
+package com.chenning.springbootlearn.MybatisPlusDemonTest.http;
 
 import org.apache.commons.lang.StringUtils;
 

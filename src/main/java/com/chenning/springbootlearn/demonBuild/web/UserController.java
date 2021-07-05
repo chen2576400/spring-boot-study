@@ -1,6 +1,7 @@
 package com.chenning.springbootlearn.demonBuild.web;
 
 
+import com.chenning.springbootlearn.demonBuild.model.ParmVo;
 import com.chenning.springbootlearn.demonBuild.model.User;
 import com.chenning.springbootlearn.demonBuild.model.UserVo;
 import com.chenning.springbootlearn.demonBuild.service.UserService;
@@ -48,4 +49,18 @@ public class UserController {
     public List<UserVo> findUserAndCardByID1(@RequestBody Integer id) {
         return userService.findUserAndCardByID(id);
     }
+
+
+
+    /**
+     * postMan
+     * @param
+     * @return
+     */
+    @RequestMapping("/findUserAndCardByID2")
+    public List<UserVo> findUserAndCardByID2(@RequestBody ParmVo parmVo) {
+        return userService.findUserAndCardByID(parmVo.getId());
+    }
+
+
 }
