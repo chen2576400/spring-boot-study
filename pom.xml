@@ -123,7 +123,6 @@
         </dependency>
 
 
-
         <dependency>
             <groupId>org.quartz-scheduler</groupId>
             <artifactId>quartz</artifactId>
@@ -155,6 +154,11 @@
             <version>${httpclient.version}</version>
         </dependency>
 
+        <!-- aop-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
 
 
     </dependencies>
