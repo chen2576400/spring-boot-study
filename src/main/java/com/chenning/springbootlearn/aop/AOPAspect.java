@@ -123,6 +123,11 @@ public class AOPAspect {
         String methodName = point.getSignature().getName();
         System.out.println("获取的方法类名" + className + "获取的方法名" + methodName);
         log.info("@Around：执行目标方法之前...");
+        {
+            //修改原来方法返回值就不要执行point.proceed() 直接return自己自定义方法返回值
+            //修改原来方法参数并执行原来方法   point.proceed(newargs)；
+        }
+
         Object proceed = point.proceed();//只要执行了point.proceed() 就会放行拦截的方法
         log.info("@Around：执行目标方法之后...");
         System.out.println("返回值为" + proceed);
