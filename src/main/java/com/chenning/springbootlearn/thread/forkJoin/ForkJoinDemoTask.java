@@ -1,10 +1,14 @@
 package com.chenning.springbootlearn.thread.forkJoin;
 
+import lombok.SneakyThrows;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.RecursiveTask;
+import java.util.concurrent.TimeUnit;
 
-import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 
 /**
  * @Author nchen
@@ -14,6 +18,7 @@ import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
  */
 public class ForkJoinDemoTask extends RecursiveTask<List<Integer>> {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(ForkJoinDemoTask.class);
 
     private List<Integer> tList;
 
@@ -32,6 +37,7 @@ public class ForkJoinDemoTask extends RecursiveTask<List<Integer>> {
         this.end = end;
     }
 
+    @SneakyThrows
     @Override
     protected List<Integer> compute() {  //(这里是递归)
         //集合长度小于每个线程任务数 则不切割((0, list.size-1 <  taskNumber))
@@ -39,6 +45,16 @@ public class ForkJoinDemoTask extends RecursiveTask<List<Integer>> {
             LOGGER.info("开始计算的部分：startValue = " + start + ";endValue = " + end +"执行的数量为"+(end-start) );
             List<Integer> integers=new ArrayList<>();
             for (int i = start; i <= end; i++) {
+
+                //// TODO: 2021/8/4  模拟耗时操作start
+                {
+
+
+                    TimeUnit.SECONDS.sleep(1);
+
+                }
+                //// TODO: 2021/8/4 模拟耗时操作end
+
                 Integer t=tList.get(i);
                 integers.add(t);
             }
