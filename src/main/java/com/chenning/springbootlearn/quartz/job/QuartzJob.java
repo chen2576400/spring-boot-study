@@ -3,7 +3,7 @@ package com.chenning.springbootlearn.quartz.job;
 import com.alibaba.fastjson.JSON;
 import com.chenning.springbootlearn.quartz.config.SpringContextUtils;
 import com.chenning.springbootlearn.quartz.model.ScheduleJob;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.slf4j.Logger;
