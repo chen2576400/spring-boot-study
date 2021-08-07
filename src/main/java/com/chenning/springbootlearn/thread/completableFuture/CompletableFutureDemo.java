@@ -14,6 +14,13 @@ import java.util.stream.Stream;
  * @date 2021/3/16 16:36
  */
 public class CompletableFutureDemo {
+    /**
+     * https://www.cnblogs.com/fingerboy/p/9948736.html
+     * thenRun(..) 对不关心上一步的计算结果，执行下一个操作
+     * thenApply(..)当前任务正常完成以后执行，当前任务的执行的结果会作为下一任务的输入参数,有返回值
+     * @return
+     */
+
 
     public static List<Integer> completableFutureDemo() {
         List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
@@ -186,6 +193,7 @@ public class CompletableFutureDemo {
                 System.out.println(new Timestamp(System.currentTimeMillis()) + "出错了呀======");
                 return 100;
             }).whenComplete((integer, throwable) -> System.out.println("程序执行完毕后=========>" + new Timestamp(System.currentTimeMillis()) + "()" + integer));
+
             futures.add(future);
         }
         return futures.stream()
