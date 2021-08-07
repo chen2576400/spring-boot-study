@@ -23,6 +23,7 @@
         <fastjson-version>1.2.66</fastjson-version>
         <redis-version>1.4.1.RELEASE</redis-version>
         <commons-lang-version>3.10</commons-lang-version>
+        <guava-version>16.0.1</guava-version>
     </properties>
     <dependencies>
         <dependency>
@@ -160,6 +161,13 @@
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
 
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava-version}</version>
+
+        </dependency>
 
     </dependencies>
     <build>

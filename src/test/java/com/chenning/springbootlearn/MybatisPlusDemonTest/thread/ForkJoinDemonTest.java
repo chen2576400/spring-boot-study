@@ -35,7 +35,7 @@ public class ForkJoinDemonTest {
         ForkJoinTask<List<Integer>> submit = pool.submit(joinDemoTask);
         List<Integer> list = submit.get();
         stopWatch.stop();
-        System.out.println("执行时长：" + stopWatch.getTime(TimeUnit.SECONDS) + " 毫秒.");
+        System.out.println("执行时长：" + stopWatch.getTime(TimeUnit.SECONDS) + " 秒.");
         //for (Integer i:list){
         //    System.out.println(i);
         //}
