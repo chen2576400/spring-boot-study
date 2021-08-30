@@ -130,6 +130,9 @@ public class ExcelUtils {
                     cellValue = cell.getRichStringCellValue().getString();
                     break;
                 }
+                case BOOLEAN:{
+                    cellValue =String.valueOf(cell.getBooleanCellValue());
+                }
                 default:
                     cellValue = "";
             }
