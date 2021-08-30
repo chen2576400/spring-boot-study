@@ -1,4 +1,4 @@
-package com.chenning.springbootlearn.excel.POI;
+package com.chenning.springbootlearn.util.excel;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
@@ -21,7 +21,47 @@ import java.util.regex.Pattern;
  */
 public class ExcelUtils {
 
-    //读取excel
+
+    /**
+     * 文件路径转Workbook
+     * @param filePath 文件完全路径
+     * @return
+     */
+    public static Workbook readExcel(String filePath) {
+        Workbook wb = null;
+        if (filePath == null) {
+            return null;
+        }
+        String extString = filePath.substring(filePath.lastIndexOf("."));
+        InputStream is = null;
+        try {
+            is = new FileInputStream(filePath);
+            if (".xls".equals(extString)) {
+                return wb = new HSSFWorkbook(is);
+            } else if (".xlsx".equals(extString)) {
+                return wb = new XSSFWorkbook(is);
+            } else {
+                return wb = null;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return wb;
+    }
+
+
+
+
+
+
+
+    /**
+     * 流转为Workbook
+     * @param inputStream   文件IO
+     * @param extString    文件名后缀
+     * @return
+     */
     public static Workbook readExcel(InputStream inputStream, String extString) {
         Workbook wb = null;
         try {
