@@ -2,7 +2,7 @@ package com.chenning.springbootlearn.fastJson;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
-import com.chenning.springbootlearn.demonBuild.model.User;
+import com.chenning.springbootlearn.crud.model.User;
 
 import java.util.List;
 

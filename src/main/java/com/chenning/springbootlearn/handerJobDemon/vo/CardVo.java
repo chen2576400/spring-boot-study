@@ -1,6 +1,6 @@
 package com.chenning.springbootlearn.handerJobDemon.vo;
 
-import com.chenning.springbootlearn.demonBuild.model.Card;
+import com.chenning.springbootlearn.crud.model.Card;
 import lombok.Data;
 
 /**

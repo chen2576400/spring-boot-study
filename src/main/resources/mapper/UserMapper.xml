@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.chenning.springbootlearn.demonBuild.mapper.UserMapper">
+<mapper namespace="com.chenning.springbootlearn.crud.mapper.UserMapper">
 
 
-    <resultMap id="userMap" type="com.chenning.springbootlearn.demonBuild.model.UserVo">
+    <resultMap id="userMap" type="com.chenning.springbootlearn.crud.model.UserVo">
         <result column="user_name" property="userName"></result>
         <result column="address" property="address"></result>
-        <collection property="cards" ofType="com.chenning.springbootlearn.demonBuild.model.Card">
+        <collection property="cards" ofType="com.chenning.springbootlearn.crud.model.Card">
             <id column="id" property="id"/>
             <result column="user_id" property="userId"/>
             <result column="card_number" property="cardNumber"/>

@@ -1,6 +1,6 @@
 package com.chenning.springbootlearn.mail;
 
-import com.chenning.springbootlearn.util.Result;
+import com.chenning.springbootlearn.util.result.Result;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;

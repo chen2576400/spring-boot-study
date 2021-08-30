@@ -24,6 +24,7 @@
         <redis-version>1.4.1.RELEASE</redis-version>
         <commons-lang-version>3.10</commons-lang-version>
         <guava-version>16.0.1</guava-version>
+        <poi-version>4.1.2</poi-version>
     </properties>
     <dependencies>
         <dependency>
@@ -161,13 +162,33 @@
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
 
-
+        <!-- guava工具-->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>${guava-version}</version>
-
         </dependency>
+        <!-- guava-->
+
+
+        <!-- excel-->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>${poi-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>${poi-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml-schemas</artifactId>
+            <version>${poi-version}</version>
+        </dependency>
+        <!-- excel-->
+
 
     </dependencies>
     <build>

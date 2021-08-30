@@ -61,7 +61,7 @@ public class AOPAspect {
     /**
      * 这里我是通过controller调用的当前service (aop动态代理对象要交给容器管理)
      */
-    @Pointcut("execution(* com.chenning.springbootlearn.demonBuild.service.impl.UserServiceImpl.findUserAndCardByID(..))")
+    @Pointcut("execution(* com.chenning.springbootlearn.crud.service.impl.UserServiceImpl.findUserAndCardByID(..))")
     private void pointcut() {
     }
 

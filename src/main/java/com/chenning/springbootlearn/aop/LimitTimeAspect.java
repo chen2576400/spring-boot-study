@@ -1,12 +1,11 @@
 package com.chenning.springbootlearn.aop;
 
-import com.chenning.springbootlearn.util.Result;
+import com.chenning.springbootlearn.util.result.Result;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Pointcut;
-import org.slf4j.Logger;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 

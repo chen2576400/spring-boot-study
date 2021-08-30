@@ -1,7 +1,7 @@
 package com.chenning.springbootlearn.mq.customer;
 
 import com.alibaba.fastjson.JSON;
-import com.chenning.springbootlearn.demonBuild.model.User;
+import com.chenning.springbootlearn.crud.model.User;
 import com.chenning.springbootlearn.mq.constant.Constant;
 import com.rabbitmq.client.Channel;
 import org.springframework.amqp.core.Message;

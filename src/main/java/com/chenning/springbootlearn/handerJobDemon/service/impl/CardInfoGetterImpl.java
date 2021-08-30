@@ -1,8 +1,8 @@
 package com.chenning.springbootlearn.handerJobDemon.service.impl;
 
-import com.chenning.springbootlearn.demonBuild.mapper.CardMapper;
-import com.chenning.springbootlearn.demonBuild.model.Card;
-import com.chenning.springbootlearn.demonBuild.model.User;
+import com.chenning.springbootlearn.crud.mapper.CardMapper;
+import com.chenning.springbootlearn.crud.model.Card;
+import com.chenning.springbootlearn.crud.model.User;
 import com.chenning.springbootlearn.handerJobDemon.DemonModel;
 import com.chenning.springbootlearn.handerJobDemon.service.CardInfoGetter;
 import com.chenning.springbootlearn.handerJobDemon.vo.CardVo;

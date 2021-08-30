@@ -1,7 +1,7 @@
 package com.chenning.springbootlearn.reflex.model.service;
 
-import com.chenning.springbootlearn.demonBuild.model.User;
-import com.chenning.springbootlearn.demonBuild.service.UserService;
+import com.chenning.springbootlearn.crud.model.User;
+import com.chenning.springbootlearn.crud.service.UserService;
 import com.chenning.springbootlearn.reflex.model.AgentEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
 package com.chenning.springbootlearn.mq.producer;
 
-import com.chenning.springbootlearn.demonBuild.model.User;
+import com.chenning.springbootlearn.crud.model.User;
 import com.chenning.springbootlearn.mq.constant.Constant;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;

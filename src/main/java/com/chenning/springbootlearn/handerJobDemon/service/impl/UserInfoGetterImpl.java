@@ -1,7 +1,7 @@
 package com.chenning.springbootlearn.handerJobDemon.service.impl;
 
-import com.chenning.springbootlearn.demonBuild.mapper.UserMapper;
-import com.chenning.springbootlearn.demonBuild.model.User;
+import com.chenning.springbootlearn.crud.mapper.UserMapper;
+import com.chenning.springbootlearn.crud.model.User;
 import com.chenning.springbootlearn.handerJobDemon.DemonModel;
 import com.chenning.springbootlearn.handerJobDemon.service.UserInfoGetter;
 import org.springframework.beans.factory.annotation.Autowired;

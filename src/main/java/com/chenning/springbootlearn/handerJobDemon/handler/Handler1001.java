@@ -1,6 +1,6 @@
 package com.chenning.springbootlearn.handerJobDemon.handler;
 
-import com.chenning.springbootlearn.demonBuild.service.UserService;
+import com.chenning.springbootlearn.crud.service.UserService;
 import com.chenning.springbootlearn.handerJobDemon.DemonModel;
 import org.springframework.beans.factory.annotation.Autowired;
 
