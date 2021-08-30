@@ -243,4 +243,17 @@ public class ExcelUtils {
     }
 
 
+
+    public  static  InputStream WorkbookToInputStream(Workbook workbook){
+        InputStream is=null;
+        try {
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            workbook.write(bos);
+            byte[] barray = bos.toByteArray();
+            is = new ByteArrayInputStream(barray);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+         return  is;
+    }
 }

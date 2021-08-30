@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
  * @Description
  */
 @Log4j2
-public class AnalysisExcel {
+public class AnalysisExcelByPOI {
     private static Workbook workbook = null;
 
     static {
