@@ -10,6 +10,7 @@ import org.springframework.core.io.support.ResourcePatternResolver;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 /**
  * @Author nchen
@@ -39,11 +40,21 @@ public class AnalysisExcelByEasyExcel {
 
 
     public  void  test1(){
-        ExcelReaderBuilder reader = EasyExcel.read(ExcelUtils.WorkbookToInputStream(workbook), ModelEasyExcel.class, new ExcelListener());
+        ExcelReaderBuilder reader = EasyExcel.read(ExcelUtils.WorkbookToInputStream(workbook), ModelEasyExcel.class, new OwnerExcelListener());
         EasyExcel.read(ExcelUtils.WorkbookToInputStream(workbook))
                 .sheet()
-                .registerReadListener(new ExcelListener())
+                .registerReadListener(new OwnerExcelListener())
                 .head(ModelEasyExcel.class)
                 .doRead();
+    }
+
+
+    public  void  test2(){
+        ExcelReaderBuilder reader = EasyExcel.read(ExcelUtils.WorkbookToInputStream(workbook), ModelEasyExcel.class, new OwnerExcelListener());
+        List<Object> objects = EasyExcel.read(ExcelUtils.WorkbookToInputStream(workbook))
+                .sheet()
+                .registerReadListener(new OwnerExcelListener())
+                .head(ModelEasyExcel.class)
+                .doReadSync();
     }
 }
