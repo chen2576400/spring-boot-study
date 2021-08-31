@@ -21,15 +21,15 @@ import java.util.List;
  * 每解析一行会回调invoke()方法。
  * 整个excel解析结束会执行doAfterAllAnalysed()方法
  */
-public class OwnerExcelListener extends AnalysisEventListener<ModelEasyExcel> {
+public class SheetOneExcelListener extends AnalysisEventListener<ModelEasyExcelSheetOne> {
     //由于每次读都是新new OwnerExcelListener的，所以这个list不会存在线程安全问题
-    List<ModelEasyExcel> list = new ArrayList<>();
+    List<ModelEasyExcelSheetOne> list = new ArrayList<>();
     private static final int BATCH_COUNT = 100;
 
     @Override
-    public void invoke(ModelEasyExcel o, AnalysisContext analysisContext) {
+    public void invoke(ModelEasyExcelSheetOne o, AnalysisContext analysisContext) {
         //一行数据读取后会调用
-        System.out.println("当前对象" + o);
+        System.out.println("当前sheet1对象" + o);
         list.add(o);
         if (list.size() >= BATCH_COUNT) {
             // TODO: 2021/8/30  

@@ -15,4 +15,10 @@ public class ExcelTest {
         AnalysisExcelByEasyExcel excel=new AnalysisExcelByEasyExcel();
         excel.test1();
     }
+
+    @Test
+    public void test2(){
+        AnalysisExcelByEasyExcel excel=new AnalysisExcelByEasyExcel();
+        excel.test2();
+    }
 }
