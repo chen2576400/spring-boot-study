@@ -21,4 +21,11 @@ public class ExcelTest {
         AnalysisExcelByEasyExcel excel=new AnalysisExcelByEasyExcel();
         excel.test2();
     }
+
+
+    @Test
+    public void test3(){
+        AnalysisExcelByEasyExcel excel=new AnalysisExcelByEasyExcel();
+        excel.test3();
+    }
 }
