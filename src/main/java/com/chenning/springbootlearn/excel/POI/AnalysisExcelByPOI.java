@@ -43,6 +43,10 @@ public class AnalysisExcelByPOI {
     }
 
 
+    /**
+     * 解析excel
+     *
+     */
     public void test1() throws InterruptedException {
         Sheet sheet = null;
         Row row = null;
@@ -89,5 +93,11 @@ public class AnalysisExcelByPOI {
             System.out.println("集合长度"+modelPOIS.size());
         }
     }
+
+
+    /**
+     * 
+     */
+
 
 }
