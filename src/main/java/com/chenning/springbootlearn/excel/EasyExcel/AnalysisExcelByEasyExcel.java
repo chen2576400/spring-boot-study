@@ -2,9 +2,13 @@ package com.chenning.springbootlearn.excel.EasyExcel;
 
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.ExcelReader;
+import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.read.builder.ExcelReaderSheetBuilder;
 import com.alibaba.excel.read.metadata.ReadSheet;
+import com.alibaba.excel.write.builder.ExcelWriterBuilder;
+import com.alibaba.excel.write.builder.ExcelWriterSheetBuilder;
 import com.alibaba.excel.write.merge.LoopMergeStrategy;
+import com.alibaba.excel.write.metadata.WriteSheet;
 import com.chenning.springbootlearn.util.excel.ExcelUtils;
 import com.google.common.collect.Lists;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -12,8 +16,11 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URLEncoder;
 import java.sql.Date;
 import java.util.*;
 
@@ -24,9 +31,10 @@ import java.util.*;
  * @Description
  */
 public class AnalysisExcelByEasyExcel {
-    final String PATH="D:\\";
+    final String PATH = "D:\\";
 
     private static Workbook workbook = null;
+
     static {
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         try {
@@ -44,7 +52,9 @@ public class AnalysisExcelByEasyExcel {
         }
     }
 
-    //读取默认第一个sheet
+    /**
+     * 读取默认第一个sheet
+     */
     public void test1() {
         EasyExcel.read(ExcelUtils.WorkbookToInputStream(workbook))
                 .sheet()// 这里默认读取第一个sheet
@@ -56,14 +66,15 @@ public class AnalysisExcelByEasyExcel {
     }
 
 
-    //读取多个sheet
+    /**
+     * 读取多个sheet
+     */
     public void test2() {
         ExcelReader excelReader = EasyExcel.read(ExcelUtils.WorkbookToInputStream(workbook)).build();
 
-        SheetOneExcelListener sheetOneExcelListener = new SheetOneExcelListener();
         ReadSheet readSheet1 = EasyExcel.readSheet(0)
                 .head(ModelEasyExcelSheetOne.class)
-                .registerReadListener(sheetOneExcelListener)
+                .registerReadListener(new SheetOneExcelListener())
                 .build();
 
 
@@ -78,18 +89,18 @@ public class AnalysisExcelByEasyExcel {
     }
 
 
-
-
-    //生成excel文件
+    /**
+     * 生成excel文件到指定文件夹(单个sheet)
+     */
     public void test3() {
-        List<ModelWriteExcel> models=getData();
-        String fileName=PATH+"EasyExcel导出.xlsx";
+        List<ModelWriteExcel> models = getData();
+        String fileName = PATH + "EasyExcel导出.xlsx";
 
-        // 忽略 title 不导出
+        // 忽略 title列 不导出
         Set<String> excludeColumnFiledNames = new HashSet<String>();
         excludeColumnFiledNames.add("title");
 
-        // 只导出 title
+        // 只导出 title列
         Set<String> includeColumnFiledNames = new HashSet<String>();
         includeColumnFiledNames.add("title");
 
@@ -118,13 +129,102 @@ public class AnalysisExcelByEasyExcel {
     }
 
 
+    /**
+     * 生成excel文件到指定文件夹(单个sheet)
+     */
+    public void test4() {
+        List<ModelWriteExcel> models = getData();
+        String fileName = PATH + "EasyExcel导出.xlsx";
+
+        // 忽略 title列 不导出
+        Set<String> excludeColumnFiledNames = new HashSet<String>();
+        excludeColumnFiledNames.add("title");
+        // 只导出 title列
+        Set<String> includeColumnFiledNames = new HashSet<String>();
+        includeColumnFiledNames.add("title");
+        // 当前表示 第coulmnIndex+1列 每隔eachRow行 合并。当然其他合并策略也可以自己写
+        LoopMergeStrategy loopMergeStrategy = new LoopMergeStrategy(2, 1);
 
 
 
+        ExcelWriter excelWriter = EasyExcel.write().file(fileName).build();
 
-    private  List<ModelWriteExcel> getData(){
+        //第一个sheet
+        WriteSheet writeSheet1 = EasyExcel.writerSheet("sheet1").head(ModelWriteExcel.class).build();
+        //第二个sheet
+        WriteSheet writeSheet2 = EasyExcel.writerSheet("sheet2").head(ModelWriteExcel.class)
+                .registerWriteHandler(loopMergeStrategy).build();
+
+
+        //写入第一个
+        excelWriter.write(models, writeSheet1);
+        //写入第二个
+        excelWriter.write(models, writeSheet2);
+        //千万别忘记finish 会帮忙关闭流
+        excelWriter.finish();
+
+    }
+
+
+    /**
+     * 浏览器 响应下载单个sheet的excel
+     * @param httpServletResponse
+     * @param request
+     */
+    public void test5(HttpServletResponse httpServletResponse, HttpServletRequest request) {
+        try {
+            List<ModelWriteExcel> models = getData();
+
+            httpServletResponse.setHeader("content-Type", "application/vnd.ms-excel");
+            httpServletResponse.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode("最新指标数据模板.xlsx", "utf-8"));
+            EasyExcel.write()
+                    .file(httpServletResponse.getOutputStream())
+                    .head(ModelWriteExcel.class)
+                    .sheet("导出模板sheet")
+                    .doWrite(models); //已经包含了finish
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    /**
+     * 浏览器 响应下载多个sheet的excel
+     * @param httpServletResponse
+     * @param request
+     */
+    public void test6(HttpServletResponse httpServletResponse, HttpServletRequest request) {
+        try {
+            List<ModelWriteExcel> models = getData();
+
+            httpServletResponse.setHeader("content-Type", "application/vnd.ms-excel");
+            httpServletResponse.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode("最新指标数据模板.xlsx", "utf-8"));
+            ExcelWriter excelWriter = EasyExcel.write()
+                    .file(httpServletResponse.getOutputStream()).build();
+
+
+            //第一个sheet
+            WriteSheet writeSheet1 = EasyExcel.writerSheet("导出模板sheet1").head(ModelWriteExcel.class).build();
+            //第二个sheet
+            WriteSheet writeSheet2 = EasyExcel.writerSheet("导出模板sheet2").head(ModelWriteExcel.class).build();
+            //写入第一个
+            excelWriter.write(models, writeSheet1);
+            //写入第二个
+            excelWriter.write(models, writeSheet2);
+            //千万别忘记finish 会帮忙关闭流
+            excelWriter.finish();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    private List<ModelWriteExcel> getData() {
         ArrayList<ModelWriteExcel> modelWriteExcels = Lists.<ModelWriteExcel>newArrayList();
-        for (int i = 0; i <10 ; i++) {
+        for (int i = 0; i < 10; i++) {
             ModelWriteExcel modelWriteExcel = ModelWriteExcel.builder().date(new Date(System.currentTimeMillis()))
                     .doubleData(0.56)
                     .title("字符串" + i)
