@@ -1,12 +1,15 @@
 package com.chenning.springbootlearn.mybatisPlus.Io;
 
 import com.chenning.springbootlearn.util.commonsIO.FileUtil;
+import com.google.common.collect.Lists;
 import org.apache.commons.io.FilenameUtils;
 import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Set;
 
 /**
  * @Author nchen
@@ -32,5 +35,10 @@ public class FileUtilTest {
         //FileUtil.copyToFile("D:/OwnFile/One/a.txt","D:/OwnFile/Two/b.txt");
         //FileUtil.createFile("d:/TTT/One\\//\\","a.txt");
         //System.out.println(FileUtil.existsDirectory("d:"+File.separator+"TTT" +File.separator+"One"));
+
+
+        Set<String> strings=null;
+        ArrayList<String> strings1 = Lists.newArrayList(strings);
+        System.out.println(strings1);
     }
 }
