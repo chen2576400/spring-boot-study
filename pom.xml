@@ -205,6 +205,22 @@
             <version>2.6</version>
         </dependency>
 
+
+
+        <!-- 数据库说明文档-->
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.30</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.smallbun.screw</groupId>
+            <artifactId>screw-core</artifactId>
+            <version>1.0.5</version>
+        </dependency>
+        <!-- 数据库说明文档-->
+
     </dependencies>
     <build>
         <plugins>
