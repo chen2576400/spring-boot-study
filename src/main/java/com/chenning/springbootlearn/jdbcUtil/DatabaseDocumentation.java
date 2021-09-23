@@ -1,4 +1,4 @@
-package com.chenning.springbootlearn.util;
+package com.chenning.springbootlearn.jdbcUtil;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,9 +17,9 @@ import cn.smallbun.screw.core.process.ProcessConfig;
  * @Author nchen
  * @Date 2021/9/23 15:49
  * @Version 1.0
- * @Description 数据库说明文档
+ * @Description 一键生成数据库说明文档
  */
-public class databaseDocumentation {
+public class DatabaseDocumentation {
 
     public static void main(String[] args) {
         // 数据源

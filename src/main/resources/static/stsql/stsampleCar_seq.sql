@@ -1,0 +1,12 @@
+CREATE TABLE IF NOT EXISTS `stsampleCar_seq`  (
+  `CURRENT_VALUE` bigint(20) NOT NULL DEFAULT 0,
+  `INCREMENT_BY` bigint(20) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`CURRENT_VALUE`, `INCREMENT_BY`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+
+-- -- 表里有数据则不执行  无数据默认执行插入
+INSERT INTO `stsampleCar_seq`
+SELECT * FROM  (select 0 CURRENT_VALUE ,1 INCREMENT_BY)a
+WHERE NOT EXISTS (SELECT NULL FROM stsampleCar_seq);
+
