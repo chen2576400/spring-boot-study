@@ -31,12 +31,19 @@ public class Queue {
      * 先进先出，读写互相排斥
      */
     public void ArrayBlockingQueue() {
-        /*
+        /*存放元素
          add  向队列里面添加元素  如果队列长度已满继续添加会报错
          put   向队列里面添加元素  如果队列长度已满继续添加会阻塞 等到队列有元素移除会自动继续添加
          offer (anObject):表示如果可能的话,将anObject加到BlockingQueue里,即如果BlockingQueue可以容纳,则返回true,否则返回false.
+         offer 还具有时间方法
          */
 
+        /*  取元素
+         remove():底层是用到了poll()方法，检索并且删除返回队列头的元素,与poll()方法不同的是，元素没有是进行抛异常NoSuchElementException。
+         poll(): 检索并且删除返回队列头的元素,有就返回没有就返回null。
+         take(): 检索并且删除返回队列头的元素,如果元素没有会一直等待，有就返回。
+         peek(): 检索但不移除此队列的头部;如果此队列为空，则返回null。返回头部元素。
+         */
 
 
         ArrayBlockingQueue<String> arrayBlockingQueue = new ArrayBlockingQueue<>(6);
@@ -46,7 +53,7 @@ public class Queue {
             executorService.execute(new customerThead(arrayBlockingQueue));
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             executorService.shutdown();
         }
     }
@@ -75,29 +82,30 @@ public class Queue {
 
 
     public static void main(String[] args) {
-        //Queue  queue=new Queue();
-        //try {
-        //    queue.ArrayBlockingQueue();
-        //} catch (Exception e) {
-        //    e.printStackTrace();
-        //}
+        Queue queue = new Queue();
+        try {
+            queue.ArrayBlockingQueue();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
 
-
-    public class produceThead implements  Runnable{
+    public class produceThead implements Runnable {
         private ArrayBlockingQueue<String> arrayBlockingQueue;
-        public  produceThead(ArrayBlockingQueue<String> arrayBlockingQueue){
-            this.arrayBlockingQueue=arrayBlockingQueue;
+
+        public produceThead(ArrayBlockingQueue<String> arrayBlockingQueue) {
+            this.arrayBlockingQueue = arrayBlockingQueue;
         }
+
         @Override
         public void run() {
-            for (int i=0;i<10;i++){
+            for (int i = 0; i < 10; i++) {
                 try {
-                    arrayBlockingQueue.put("元素"+i);
-                    log.info("存放元素"+i);
-                } catch (InterruptedException e) {
+                    arrayBlockingQueue.put("元素" + i);
+                    log.info("存放元素" + i);
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -106,11 +114,13 @@ public class Queue {
     }
 
 
-    public class customerThead implements  Runnable{
+    public class customerThead implements Runnable {
         private ArrayBlockingQueue<String> arrayBlockingQueue;
-        public  customerThead(ArrayBlockingQueue<String> arrayBlockingQueue){
-            this.arrayBlockingQueue=arrayBlockingQueue;
+
+        public customerThead(ArrayBlockingQueue<String> arrayBlockingQueue) {
+            this.arrayBlockingQueue = arrayBlockingQueue;
         }
+
         @Override
         public void run() {
             try {
