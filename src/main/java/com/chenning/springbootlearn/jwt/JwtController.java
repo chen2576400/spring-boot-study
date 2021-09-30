@@ -50,7 +50,8 @@ public class JwtController {
         redisService.set(session.getId(),token);
         redisService.set(LoginConstant.ACCESS_TOKEN + user.getUserId(), token);
 
-        {//这里将cookie存放到浏览器  是为了方便后面页面直接调用 免得每次都要放一个jwt-token  看业务需要
+        {//这里将cookie存放到浏览器  是为了方便后面页面直接调用 免得每次都要放一个jwt-token  看业务需要(也可以前端存入)
+            //因为拦截器还有session Id的判断 所以切换浏览器后就需要重新登录
             Cookie c = new Cookie(LoginConstant.HEADER_TOKEN, token);
             c.setHttpOnly(true);
             c.setPath("/");
