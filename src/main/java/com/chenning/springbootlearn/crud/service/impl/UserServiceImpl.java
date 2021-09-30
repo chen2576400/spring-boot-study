@@ -1,5 +1,6 @@
 package com.chenning.springbootlearn.crud.service.impl;
 
+import com.baomidou.mybatisplus.extension.conditions.query.QueryChainWrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.chenning.springbootlearn.crud.mapper.UserMapper;
 import com.chenning.springbootlearn.crud.model.User;
@@ -31,5 +32,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public List<UserVo> findUserAndCardByID(Integer userID) {
         return userMapper.findUserAndCardByID(userID);
+    }
+
+    @Override
+    public User findUserByNameAndPassword(String userName,String password){
+        User user = new User();
+        user.setUserName(userName);
+        user.setPassword(password);
+        return userMapper.selectOne(user);
     }
 }

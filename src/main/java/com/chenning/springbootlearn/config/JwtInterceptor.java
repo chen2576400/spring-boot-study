@@ -1,0 +1,134 @@
+package com.chenning.springbootlearn.config;
+
+import com.auth0.jwt.interfaces.DecodedJWT;
+import com.chenning.springbootlearn.crud.model.User;
+import com.chenning.springbootlearn.crud.service.UserService;
+import com.chenning.springbootlearn.jwt.JwtUtils;
+import com.chenning.springbootlearn.redis.RedisService;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.util.WebUtils;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+/**
+ * @Author nchen
+ * @Date 2021/9/29 16:54
+ * @Version 1.0
+ * @Description
+ */
+public class JwtInterceptor implements HandlerInterceptor  {
+
+    @Autowired
+    private RedisService redisService;
+    @Autowired
+    private UserService userService;
+
+
+
+
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+
+
+        String token = request.getHeader(LoginConstant.HEADER_TOKEN);
+        // 获取token: 1. header 2.cookie
+        if (StringUtils.isBlank(token) || "undefined".equals(token)) {
+            Cookie cookie = WebUtils.getCookie(request, LoginConstant.HEADER_TOKEN);
+            if (null != cookie) {
+                token = cookie.getValue();
+            }
+        }
+
+        // 没有获取到token
+        if (StringUtils.isBlank(token) || "undefined".equals(token)) {
+            unauthorized(response);
+            return false;
+        }
+
+
+        //解析token
+        Boolean verify = JwtUtils.verify(token);
+        if (!verify) {
+            unauthorized(response);
+            return false;
+        }
+
+
+        String id;
+        {//校验历史token
+            DecodedJWT decodedJWT = JwtUtils.getTokenInfo(token);
+            id = decodedJWT.getClaim("id").asString();//获取用户ID
+            String oldTotken = redisService.get(LoginConstant.ACCESS_TOKEN + id);//原来放在redis的用户token
+            if (StringUtils.isNotEmpty(oldTotken) && !token.equals(oldTotken)) {
+                unauthorized(response);
+                return false;
+            }
+        }
+
+
+        {//区分浏览器
+
+            String sessionId = request.getSession().getId();//当前请求页面的sessionID
+            String sessionToken = redisService.get(sessionId);//原来放在redis的session token
+            if (StringUtils.isNotEmpty(sessionToken) && !sessionToken.equals(token)) {
+                unauthorized(response);
+                return false;
+            }
+        }
+
+
+        User user = userService.selectById(id);
+
+        // 未找到用户信息.
+        if (null == user) {
+            unauthorized(response);
+            return false;
+        }
+        UserContext.set(user);
+
+
+        return true;
+    }
+
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response,
+                                Object handler, Exception ex) throws Exception {
+        UserContext.clear();
+    }
+
+
+    /**
+     * 处理401.
+     */
+    private void unauthorized(HttpServletResponse response) throws IOException {
+        PrintWriter writer = null;
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=utf-8");
+        try {
+            writer = response.getWriter();
+            writer.write("{\"success\":false,\"code\":401,\"message\":\"没有登录.\"}");
+
+        } catch (IOException e) {
+        } finally {
+            if (writer != null) {
+                writer.close();
+            }
+        }
+    }
+
+    /**
+     * 处理403.
+     */
+    private void forbidden(HttpServletResponse response) throws IOException {
+        //response.sendError(HttpServletResponse.SC_FORBIDDEN);// 403
+        response.getWriter()
+                .write("{\"success\":false,\"code\":403,\"message\":\"没有权限.\"}");
+        response.getWriter().close();
+    }
+}
