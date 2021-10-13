@@ -43,7 +43,6 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<Object> {
 
 
 
-                //向客户端发送消息
                 String msg="你好客户端，我是服务器端";
                 ctx.channel().writeAndFlush(new TextWebSocketFrame(msg));
             }
