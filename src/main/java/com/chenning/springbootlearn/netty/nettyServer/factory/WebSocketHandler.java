@@ -1,5 +1,7 @@
 package com.chenning.springbootlearn.netty.nettyServer.factory;
 
+import com.alibaba.fastjson.JSON;
+import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.group.ChannelGroup;
@@ -9,6 +11,8 @@ import io.netty.util.ReferenceCountUtil;
 import io.netty.util.concurrent.GlobalEventExecutor;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
+
+import java.nio.charset.Charset;
 
 /**
  * @Author nchen
@@ -35,14 +39,13 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<Object> {
                 if (StringUtils.isEmpty(content)) {
                     return;
                 }
-                System.out.println("收到消息"+content);
-                //WebSocketData webSocketData = JSON.parseObject(content, WebSocketData.class);
-                //if (webSocketData.getVersion() == null || !webSocketData.getVersion().equals(WebSocketData.VERSION)) {
-                //    logger.info("版本不一致，拒绝访问！");
-                //    return;
-                //}
-                //TaskHandler taskHandler = taskHandlerFactory.getTaskHandlerInstance(webSocketData.getAction());
-                //taskHandler.execute(ctx, webSocketData);
+                System.out.println("【服务端】收到消息"+content);
+
+
+
+                //向客户端发送消息
+                String msg="你好客户端，我是服务器端";
+                ctx.channel().writeAndFlush(new TextWebSocketFrame(msg));
             }
 
         } catch (Exception e) {

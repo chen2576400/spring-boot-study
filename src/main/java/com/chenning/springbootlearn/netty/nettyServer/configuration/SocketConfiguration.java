@@ -1,5 +1,5 @@
 package com.chenning.springbootlearn.netty.nettyServer.configuration;
-import com.chenning.springbootlearn.netty.nettyServer.entity.SslInfoMation;
+import com.chenning.springbootlearn.netty.nettyServer.util.SslInfoMation;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import org.springframework.stereotype.Component;
 

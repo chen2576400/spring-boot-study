@@ -1,4 +1,4 @@
-package com.chenning.springbootlearn.netty.nettyServer.entity;
+package com.chenning.springbootlearn.netty.nettyServer.util;
 
 
 public class SslInfoMation {
