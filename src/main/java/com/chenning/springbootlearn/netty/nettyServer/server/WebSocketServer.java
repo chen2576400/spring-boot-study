@@ -1,6 +1,5 @@
-package com.chenning.springbootlearn.netty.nettyServer.engine;
+package com.chenning.springbootlearn.netty.nettyServer.server;
 
-import com.chenning.springbootlearn.netty.nettyServer.configuration.SocketConfiguration;
 import com.chenning.springbootlearn.netty.nettyServer.util.OSInfoMation;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
@@ -14,51 +13,43 @@ import io.netty.handler.logging.LoggingHandler;
 import io.netty.util.concurrent.DefaultThreadFactory;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.DisposableBean;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.ApplicationRunner;
-import org.springframework.stereotype.Component;
+
 
 /**
  * @Author nchen
  * @Date 2021/10/11 14:17
  * @Version 1.0
- * @Description  容器启动
+ * @Description
  */
 @Log4j2
-@Component
-public class WebSocketServer implements ApplicationRunner, DisposableBean {
+public class WebSocketServer implements  DisposableBean {
     private EventLoopGroup bossGroup = null;
     private EventLoopGroup workGroup = null;
     private ServerBootstrap bootstrap;
     private ChannelFuture future;
+    private int mPort;
 
-    @Autowired
-    private SocketConfiguration socketConfiguration;
 
+    public WebSocketServer(int port) {
+        this.mPort = port;
+    }
 
     @Override
-    public void destroy() throws Exception {
+    public void destroy() {
         this.shutdown();
     }
-
-    @Override
-    public void run(ApplicationArguments args) throws Exception {
-        new Thread(this::start).start();
-    }
-
 
     public void start() {
         bootstrap = new ServerBootstrap();
         if (OSInfoMation.isLinux()) {
-            bossGroup = new EpollEventLoopGroup(socketConfiguration.getBossThreadCount(), new DefaultThreadFactory("boss-thread", true));
-            workGroup = new EpollEventLoopGroup(socketConfiguration.getWorkThreadCount(), new DefaultThreadFactory("worker-thread", true));
+            bossGroup = new EpollEventLoopGroup(2, new DefaultThreadFactory("boss-thread", true));
+            workGroup = new EpollEventLoopGroup(2, new DefaultThreadFactory("worker-thread", true));
             bootstrap.channel(EpollServerSocketChannel.class)
                     .group(bossGroup, workGroup)
                     .option(EpollChannelOption.TCP_CORK, true);
         } else {
-            bossGroup = new NioEventLoopGroup(socketConfiguration.getBossThreadCount(), new DefaultThreadFactory("boss-thread", true));
-            workGroup = new NioEventLoopGroup(socketConfiguration.getWorkThreadCount(), new DefaultThreadFactory("worker-thread", true));
+            bossGroup = new NioEventLoopGroup(2, new DefaultThreadFactory("boss-thread", true));
+            workGroup = new NioEventLoopGroup(2, new DefaultThreadFactory("worker-thread", true));
             bootstrap.channel(NioServerSocketChannel.class)
                     .group(bossGroup, workGroup);
         }
@@ -75,8 +66,8 @@ public class WebSocketServer implements ApplicationRunner, DisposableBean {
         try {
             bootstrap.childHandler(new WebSocketServerInitialzer());
             // 开始真正绑定端口进行监听
-            future = bootstrap.bind(socketConfiguration.getPort()).sync();
-            log.info("netty服务器在[{}]端口启动监听", socketConfiguration.getPort());
+            future = bootstrap.bind(mPort).sync();
+            log.info("netty服务器在[{}]端口启动监听", mPort);
             future.channel().closeFuture().sync();
             System.out.println("netty websocket server 启动完毕...");
         } catch (InterruptedException e) {

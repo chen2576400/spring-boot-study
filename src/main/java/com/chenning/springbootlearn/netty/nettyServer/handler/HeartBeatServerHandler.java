@@ -1,4 +1,4 @@
-package com.chenning.springbootlearn.netty.nettyServer.factory;
+package com.chenning.springbootlearn.netty.nettyServer.handler;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
