@@ -3,7 +3,7 @@ package com.chengning.thymeleaf.util;
 import java.util.Random;
 
 /**
- * @author Dominick Li
+ * @author nchen
  * @CreateTime 2020/4/22 21:56
  * @description
  **/

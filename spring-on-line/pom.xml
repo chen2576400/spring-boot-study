@@ -12,6 +12,7 @@
     <module>01-helloword</module>
     <module>02_thymeleaf</module>
       <module>04-jta-atomikos</module>
+    <module>05-distributed-lock</module>
   </modules>
   <name>spring-on-line</name>
   <description>基于springboot 2.4.2版本集成各种常用中间件的</description>

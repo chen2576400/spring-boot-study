@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="01-helloword" />
         <module name="02_thymeleaf" />
+        <module name="database_lock" />
         <module name="04-jta-atomikos" />
       </profile>
     </annotationProcessing>
@@ -18,6 +19,8 @@
       <module name="01-helloword" options="-parameters" />
       <module name="02_thymeleaf" options="-parameters" />
       <module name="04-jta-atomikos" options="-parameters" />
+      <module name="05-distributed-lock" options="-parameters" />
+      <module name="database_lock" options="-parameters" />
       <module name="spring-boot-study" options="-parameters" />
       <module name="spring-on-line" options="" />
     </option>
