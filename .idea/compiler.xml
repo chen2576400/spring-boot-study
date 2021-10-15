@@ -11,6 +11,7 @@
         <module name="02_thymeleaf" />
         <module name="database_lock" />
         <module name="04-jta-atomikos" />
+        <module name="redis_lock" />
       </profile>
     </annotationProcessing>
   </component>
@@ -21,6 +22,7 @@
       <module name="04-jta-atomikos" options="-parameters" />
       <module name="05-distributed-lock" options="-parameters" />
       <module name="database_lock" options="-parameters" />
+      <module name="redis_lock" options="-parameters" />
       <module name="spring-boot-study" options="-parameters" />
       <module name="spring-on-line" options="" />
     </option>

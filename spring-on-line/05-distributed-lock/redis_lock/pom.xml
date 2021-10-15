@@ -3,30 +3,25 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>spring-on-line</artifactId>
+        <artifactId>05-distributed-lock</artifactId>
         <groupId>com.chengning</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+    <artifactId>redis_lock</artifactId>
+    <name>redis_lock</name>
 
-    <artifactId>05-distributed-lock</artifactId>
-    <packaging>pom</packaging>
-    <name>05-distributed-lock</name>
-
-    <modules>
-        <module>database_lock</module>
-        <module>redis_lock</module>
-    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
     </properties>
 
     <dependencies>
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
     </dependencies>
-
-
-
 
 </project>
