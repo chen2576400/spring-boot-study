@@ -2,6 +2,11 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-on-line/01-helloword/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-on-line/02_thymeleaf/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-on-line/04-jta-atomikos/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-on-line/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
   </component>
 </project>

@@ -7,13 +7,19 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="spring-boot-study" />
+        <module name="01-helloword" />
+        <module name="02_thymeleaf" />
+        <module name="04-jta-atomikos" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="01-helloword" options="-parameters" />
+      <module name="02_thymeleaf" options="-parameters" />
+      <module name="04-jta-atomikos" options="-parameters" />
       <module name="spring-boot-study" options="-parameters" />
+      <module name="spring-on-line" options="" />
     </option>
   </component>
 </project>

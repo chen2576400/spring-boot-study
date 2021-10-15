@@ -1,7 +1,7 @@
 package com.chenning.springbootlearn;
 
-import com.chenning.springbootlearn.netty.nettyClient.WebSocketClient;
-import com.chenning.springbootlearn.netty.nettyServer.engine.NKSocket;
+
+import com.chenning.springbootlearn.netty.nettyServer.server.WebSocketServer;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,7 +15,31 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SpringBootLearnApplication {
     public static void main(String[] args) {
         SpringApplication.run(SpringBootLearnApplication.class, args);
-        //WebSocketClient.getInstance().start();
+
+        //try {
+        //    String host = "127.0.0.1";
+        //    int port = 12345;
+        //    NettyServer server = new NettyServer(port);
+        //    server.run();
+        //    //Thread.sleep(1000);
+        //    //NettyClient client = new NettyClient(host, port);
+        //    //client.connect();
+        //} catch (Exception e) {
+        //    e.printStackTrace();
+        //}
+        try {//和网页端web
+            String host = "127.0.0.1";
+            int port = 9011;
+            WebSocketServer server = new WebSocketServer(port);
+            server.start();
+
+
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
