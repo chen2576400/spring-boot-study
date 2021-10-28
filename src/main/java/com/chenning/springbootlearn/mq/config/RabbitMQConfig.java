@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Configuration;
 /**
  * @author: Mr.Chen
  * @create: 2021-02-03 10:50
+ *
+ * https://blog.csdn.net/qq_35387940/article/details/100514134?spm=1001.2101.3001.6650.3&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-3.no_search_link&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-3.no_search_link
  **/
 @Configuration
 public class RabbitMQConfig {
