@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 public class DemonListener implements ApplicationListener<DemonRegisterEvent> {
 
     @Override
-    @Async  //同步会阻塞等待结果 
+    //@Async  //同步会阻塞等待结果
     public void onApplicationEvent(DemonRegisterEvent event) {
         try {
             Thread.sleep(4000);
