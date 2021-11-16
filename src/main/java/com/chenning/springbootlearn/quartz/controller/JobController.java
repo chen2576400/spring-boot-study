@@ -15,6 +15,9 @@ public class JobController {
     @Autowired
     private QuartzService quartzService;
 
+
+    //http://localhost:1025/jwt/login?userName=张三&password=123456登录
+    //http://localhost:1025/cn/addJob?beanName=userServiceImpl&methodName=findAllUser&cronExpression=*/5 * * * * ?
     //添加一个job
     @RequestMapping(value = "/addJob")
     public String addjob(ScheduleJob scheduleJob) throws Exception {
@@ -51,6 +54,7 @@ public class JobController {
     }
 
 
+    //http://localhost:1025/cn/deletJob?jobIds=6&jobIds=4
     //删除job
     @RequestMapping(value = "/deletJob")
     public String deletjob(Integer[] jobIds) throws Exception {

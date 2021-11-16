@@ -22,7 +22,7 @@ public class JobFactory extends AdaptableJobFactory{
         //调用父类的方法
         Object jobInstance = super.createJobInstance(bundle);
         //进行注入
-        capableBeanFactory.autowireBean(jobInstance);
+        capableBeanFactory.autowireBean(jobInstance);//这里使QuartzJob纳入到了spring容器管理，里面可以注入
         return jobInstance;
     }
 }

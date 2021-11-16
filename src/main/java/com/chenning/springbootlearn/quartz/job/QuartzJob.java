@@ -1,6 +1,7 @@
 package com.chenning.springbootlearn.quartz.job;
 
 import com.alibaba.fastjson.JSON;
+import com.chenning.springbootlearn.crud.service.UserService;
 import com.chenning.springbootlearn.quartz.config.SpringContextUtils;
 import com.chenning.springbootlearn.quartz.model.ScheduleJob;
 import org.apache.commons.lang3.StringUtils;
@@ -8,6 +9,7 @@ import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 import org.springframework.util.ReflectionUtils;
 
@@ -15,6 +17,8 @@ import java.lang.reflect.Method;
 
 
 public class QuartzJob extends QuartzJobBean {
+    @Autowired
+    private UserService userService; //这个地方注入可看JobFactory
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
