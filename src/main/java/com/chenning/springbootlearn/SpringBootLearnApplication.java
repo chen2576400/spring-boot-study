@@ -27,19 +27,19 @@ public class SpringBootLearnApplication {
         //} catch (Exception e) {
         //    e.printStackTrace();
         //}
-        try {//和网页端web
-            String host = "127.0.0.1";
-            int port = 9011;
-            WebSocketServer server = new WebSocketServer(port);
-            server.start();
-
-
-
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        //try {//和网页端web
+        //    String host = "127.0.0.1";
+        //    int port = 9011;
+        //    WebSocketServer server = new WebSocketServer(port);
+        //    server.start();
+        //
+        //
+        //
+        //
+        //
+        //} catch (Exception e) {
+        //    e.printStackTrace();
+        //}
     }
 
 }

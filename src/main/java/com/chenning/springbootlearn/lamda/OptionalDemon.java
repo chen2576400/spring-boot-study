@@ -201,5 +201,35 @@ public class OptionalDemon {
 
 
 
+    @Test
+    public void test4() {
+
+
+
+        User user1=new User();
+        user1.setUserName("111");
+
+
+
+        User user2=new User();
+
+        User user3=new User();
+        user3.setUserName("333");
+        List<User> userList=new ArrayList<>();
+        userList.add(user1);
+        userList.add(user2);
+        userList.add(user3);
+
+        List<String> collect = userList.stream().map(user -> {
+            return Optional.ofNullable(user).map(user4 -> user4.getUserName()).orElse("");
+        }).collect(Collectors.toList());
+        //System.out.println(collect.contains(333));
+        //System.out.println(collect.contains("333"));
+        //System.out.println(collect.contains(" "));
+        //System.out.println(collect.contains("111"));
+        boolean b = userList.stream().allMatch(user -> "111".equals(user.getUserName()));
+        System.out.println(b);
+    }
+
 
 }
