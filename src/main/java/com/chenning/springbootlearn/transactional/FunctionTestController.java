@@ -130,4 +130,21 @@ public class FunctionTestController {
         ownClass.testDo1();
     }
 
+
+    /**
+     * (回滚成功)
+     *
+     * 事务的catch机制 主要是应对交给事务管理的方法，调用方法本身需不需要捕捉异常对@Transactional没有关系
+     * 某个方法不加@Transactional 调用其他service事务管理的方法  事务会生效
+     *
+     */
+    @RequestMapping("testFunction9")
+    public void testFunction9() {
+        try {
+            ownClass.testDo1();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
