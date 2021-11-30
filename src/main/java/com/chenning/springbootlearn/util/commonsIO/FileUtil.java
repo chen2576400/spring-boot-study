@@ -29,7 +29,8 @@ import java.util.Objects;
  * 当路径中有空格的时候这种路径方式就不适用与windows了
  *
  *
- * 推荐使用 File.separator 在 LUNIX 系统上，此字段的值为 '/'；在 Microsoft Windows 系统上，它为 '\'。
+ * 推荐使用 File.separator 在 LUNIX 系统上，此字段的值为 '/'；在 Microsoft Windows 系统上，它为 '\'(java获取 File.separator=="\\")。
+ *
  */
 public class FileUtil {
 
