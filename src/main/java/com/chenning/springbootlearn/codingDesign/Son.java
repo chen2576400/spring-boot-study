@@ -19,6 +19,7 @@ package com.chenning.springbootlearn.codingDesign;
  * 其中“和”字两端的按照代码先后顺序执行。
  *
  *
+ * 不给父类加无参构造器也可以的，只需要在子类构造器中调用super方法即可（一个类默认有一个无参的构造函数，如果写了含参的，无参的就不生效需要手写）
  */
 public class Son extends Father{
     public String SStr1 = "Son1";
