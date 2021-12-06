@@ -63,6 +63,7 @@ public class JwtInterceptor implements HandlerInterceptor {
 
         String id;
         {//校验历史token （同一个用户其他地方登录会挤掉重新生成一个新的token）
+            // 新的token 和之前已经登录过的前端放在请求头的token不一致，旧的登录页面再次刷新将强制踢出
             DecodedJWT decodedJWT = JwtUtils.getTokenInfo(token);
             id = decodedJWT.getClaim("id").asString();//获取用户ID
             String oldTotken = redisService.get(LoginConstant.ACCESS_TOKEN + id);//原来放在redis的用户token
@@ -73,8 +74,8 @@ public class JwtInterceptor implements HandlerInterceptor {
         }
 
 
-        {//区分浏览器  (确保是同一个浏览器不关闭)
-
+        {//区分浏览器  (确保是同一个浏览器开启时不能重复登录不同用户)
+           //同一个浏览器再次登录其他用户  以seesionId为key的redis 和之前已经登录过的前端放在请求头的token不一致，旧的其他用户页面再次刷新将强制踢出
             String sessionId = request.getSession().getId();//当前请求页面的sessionID
             String sessionToken = redisService.get(sessionId);//原来放在redis的session token
             if (StringUtils.isNotEmpty(sessionToken) && !sessionToken.equals(token)) {
