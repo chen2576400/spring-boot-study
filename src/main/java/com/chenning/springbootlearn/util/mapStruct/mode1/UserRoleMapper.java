@@ -1,9 +1,6 @@
 package com.chenning.springbootlearn.util.mapStruct.mode1;
 
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.MappingTarget;
-import org.mapstruct.Mappings;
+import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
@@ -40,6 +37,7 @@ import java.util.List;
  *          在项目构建时，会自动生成改接口的实现类，这个实现类将实现对象属性值复制
  */
 @Mapper
+//@Mapper(nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS) //自动跳过非空source属性赋值
 public interface UserRoleMapper {
     /**
      * 获取该类自动生成的实现类的实例
