@@ -1,4 +1,4 @@
-package com.chenning.springbootlearn.reflex.model;
+package com.chenning.springbootlearn.reflex.demon1;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,4 +1,4 @@
-package com.chenning.springbootlearn.reflex.model.service;
+package com.chenning.springbootlearn.reflex.demon1.service;
 
 import com.alibaba.fastjson.JSON;
 import com.chenning.springbootlearn.crud.model.User;

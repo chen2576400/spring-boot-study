@@ -1,13 +1,13 @@
-package com.chenning.springbootlearn.mybatisPlus.reflex;
+package com.chenning.springbootlearn.reflex.demon1.run;
 
 import com.chenning.springbootlearn.SpringBootLearnApplication;
 import com.chenning.springbootlearn.crud.model.User;
 import com.chenning.springbootlearn.quartz.config.SpringContextUtils;
-import com.chenning.springbootlearn.reflex.MethodUntil;
-import com.chenning.springbootlearn.reflex.model.AgentEntity;
-import com.chenning.springbootlearn.reflex.model.service.BaseService;
-import com.chenning.springbootlearn.reflex.model.service.DanceService;
-import com.chenning.springbootlearn.reflex.model.service.SingService;
+import com.chenning.springbootlearn.reflex.demon1.MethodUntil;
+import com.chenning.springbootlearn.reflex.demon1.AgentEntity;
+import com.chenning.springbootlearn.reflex.demon1.service.BaseService;
+import com.chenning.springbootlearn.reflex.demon1.service.DanceService;
+import com.chenning.springbootlearn.reflex.demon1.service.SingService;
 import lombok.SneakyThrows;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,7 +31,6 @@ public class Test2 {
         User parm2 = new User();
         parm2.setUserId(2);
         parm2.setUserName("二郎神");
-
         /**
          *  singService 和 danceService都  继承了 BaseService 所以反射时候可以用子类接收父类的方法
          */
@@ -50,7 +49,6 @@ public class Test2 {
         User parm2 = new User();
         parm2.setUserId(2);
         parm2.setUserName("二郎神");
-
         /**
          *  singService 和 danceService都  继承了 BaseService 所以反射时候可以用子类接收父类的方法
          */

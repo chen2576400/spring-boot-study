@@ -1,9 +1,9 @@
-package com.chenning.springbootlearn.mybatisPlus.reflex;
+package com.chenning.springbootlearn.reflex.demon1.run;
 
 import com.chenning.springbootlearn.SpringBootLearnApplication;
 import com.chenning.springbootlearn.crud.model.User;
 import com.chenning.springbootlearn.quartz.config.SpringContextUtils;
-import com.chenning.springbootlearn.reflex.model.service.BaseService;
+import com.chenning.springbootlearn.reflex.demon1.service.BaseService;
 import lombok.SneakyThrows;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,14 +35,14 @@ public class Test1 {
 
         Class<?> aClass;
 //               aClass = Class.forName("com.chenning.springbootlearn.reflex.model.service.BaseService");
-//            aClass = SpringContextUtils.getBean(BaseService.class).getClass();//这种方式前提该Demon1类要交给spring管理
+//               aClass = SpringContextUtils.getBean(BaseService.class).getClass();//这种方式前提该Demon1类要交给spring管理
         aClass = BaseService.class;
-
         /* getDeclaredMethod 可以获取任意方法 像，protected修饰的getMethod 只可以获取 修饰符为 public 的方法*/
         method = aClass.getDeclaredMethod("x", User.class);
-//          method = aClass.getClass().getDeclaredMethod("x", new Class<?>[]{User.class});
+//      method = aClass.getClass().getDeclaredMethod("x", new Class<?>[]{User.class});
 
 
+        //newInstance 只适用于无参的 相当于new
         //invoke方法第一个要放类的实例，如果没有类的实例就要写成  method.invoke(BaseService.class.newInstance(), user);
         //这个类的实例可以从容器取 也可以new对象
         //由于我这里BaseService交给了容器管理，所以通过工厂获取该对象可拿到里面的注入对象
