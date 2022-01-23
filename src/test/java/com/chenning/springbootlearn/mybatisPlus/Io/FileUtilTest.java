@@ -1,14 +1,10 @@
 package com.chenning.springbootlearn.mybatisPlus.Io;
 
-import com.chenning.springbootlearn.util.commonsIO.FileUtil;
 import com.google.common.collect.Lists;
-import org.apache.commons.io.FilenameUtils;
 import org.junit.Test;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Set;
 
 /**

@@ -3,6 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
+
+    <!-- 父类工程作为 pom 启动时候  拿不到配置文件(由于当前模块也要启动，所以就不作为父类pom,不然启动报错)-->
+    <!--    <packaging>pom</packaging>-->
+    <!--    <modules>-->
+    <!--        <module>springboot-study-data-jpa</module>-->
+    <!--    </modules>-->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -252,7 +259,6 @@
         </dependency>
 
 
-
         <!-- mapstruct-->
         <dependency>
             <groupId>org.mapstruct</groupId>
@@ -294,6 +300,22 @@
                 </dependencies>
             </plugin>
         </plugins>
+
+
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
 
 </project>
