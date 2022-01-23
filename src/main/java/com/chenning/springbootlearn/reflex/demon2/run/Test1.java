@@ -37,9 +37,9 @@ public class Test1 {
 
 
 
-        Object o1 = ReflectionUtils.newInstance(clazzName, s);  //获取含参  new Command1001(s)
-        Object o2 = (Command1001)ReflectionUtils.newInstance(clazzName);   //获取无参   new Command1001()
-        Object o3 = (Command1001)ReflectionUtils.newInstance(clazzName,user,s);   //获取无参   new Command1001()
+        Object o1 = ReflectionUtils.newInstance(clazzName, s);  //获取含参  new Command1002(s)
+        Command1001 o2 = (Command1001)ReflectionUtils.newInstance(clazzName);   //获取无参   new Command1002()
+        Command1001 o3 = (Command1001)ReflectionUtils.newInstance(clazzName,user,s);   //获取含参    new Command1001()
 
 
         Method method = MethodUntil.getMethod(o1.getClass(), "say1001",String.class);//获取类方法
