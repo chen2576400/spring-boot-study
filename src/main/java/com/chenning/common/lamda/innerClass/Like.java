@@ -1,4 +1,4 @@
-package com.chenning.springbootlearn.lamda.innerClass;
+package com.chenning.common.lamda.innerClass;
 
 import org.junit.Test;
 
