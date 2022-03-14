@@ -61,6 +61,7 @@ public class Like implements ILike{
 
     /**
      * lamada写法
+     * 只有在接口只有一个抽象方法时候，箭头函数默认实现匿名内部类
      */
     @Test
     public  void  test4(){
