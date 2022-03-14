@@ -65,9 +65,20 @@ public class Like implements ILike{
      */
     @Test
     public  void  test4(){
-        ILike iLike1= sum -> String.format("我是接口的自定义实现类方法,参数是%s", sum);
-        String say = iLike1.say(8);
-        System.out.println("执行完毕**********"+say);
+
+        //1 lamda表达式简化
+        ILike iLike1= (Integer a) -> String.format("我是接口的自定义实现类方法,参数是%s", a);
+        //2 lamda简化参数类型
+        ILike iLike2= (b) -> String.format("我是接口的自定义实现类方法,参数是%s", b);
+        //3 lamada简化括号
+        ILike iLike3= sum -> String.format("我是接口的自定义实现类方法,参数是%s", sum);
+
+        String say1 = iLike1.say(7);
+        String say2 = iLike2.say(8);
+        String say3 = iLike3.say(9);
+        System.out.println("执行完毕**********"+say1);
+        System.out.println("执行完毕**********"+say2);
+        System.out.println("执行完毕**********"+say3);
     }
 
 
