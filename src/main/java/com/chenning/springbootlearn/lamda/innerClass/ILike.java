@@ -1,0 +1,10 @@
+package com.chenning.springbootlearn.lamda.innerClass;
+
+/**
+ * @description:
+ * @author: Mr.Nchen
+ * @create: 2022-03-14 16:01
+ **/
+public interface ILike {
+    String say(Integer sum);
+}
