@@ -1,11 +1,11 @@
 package com.chenning.springbootlearn.mybatisPlus;
 
 import com.alibaba.fastjson.JSON;
-import com.chenning.springbootlearn.SpringBootLearnApplication;
-import com.chenning.springbootlearn.crud.model.Card;
-import com.chenning.springbootlearn.crud.model.User;
-import com.chenning.springbootlearn.crud.service.CardService;
-import com.chenning.springbootlearn.crud.service.UserService;
+import com.chenning.common.SpringBootLearnApplication;
+import com.chenning.common.crud.model.Card;
+import com.chenning.common.crud.model.User;
+import com.chenning.common.crud.service.CardService;
+import com.chenning.common.crud.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

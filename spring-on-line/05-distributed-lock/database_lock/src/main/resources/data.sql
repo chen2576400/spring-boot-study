@@ -1,1 +1,0 @@
-insert into commodity (id,commodityName,number)value(1,'惠普暗夜精灵5',5);

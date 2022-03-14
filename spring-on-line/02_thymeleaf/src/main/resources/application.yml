@@ -1,9 +1,0 @@
-spring:
-  thymeleaf:
-    cache: false
-
-server:
-  port: 1002
-  servlet:
-    #配置应用的根路径
-    context-path: /thymeleaf
