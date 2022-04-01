@@ -8,9 +8,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="01-helloword" />
-        <module name="02_thymeleaf" />
-        <module name="database_lock" />
         <module name="04-jta-atomikos" />
+        <module name="database_lock" />
+        <module name="spring-boot-study" />
+        <module name="02_thymeleaf" />
         <module name="redis_lock" />
       </profile>
     </annotationProcessing>

@@ -33,9 +33,9 @@ public class JwtInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-        if (1 == 1) {//登录默认放行
-            return true;
-        }
+//        if (1 == 1) {//登录默认放行
+//            return true;
+//        }
 
         String token = request.getHeader(LoginConstant.HEADER_TOKEN);
         // 获取token: 1. header 2.cookie
@@ -109,28 +109,28 @@ public class JwtInterceptor implements HandlerInterceptor {
      * 处理401.
      */
     private void unauthorized(HttpServletResponse response) throws IOException {
-        PrintWriter writer = null;
-        response.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html; charset=utf-8");
-        try {
-            writer = response.getWriter();
-            writer.write("{\"success\":false,\"code\":401,\"message\":\"没有登录.\"}");
-
-        } catch (IOException e) {
-        } finally {
-            if (writer != null) {
-                writer.close();
-            }
-        }
+//        PrintWriter writer = null;
+//        response.setCharacterEncoding("UTF-8");
+//        response.setContentType("text/html; charset=utf-8");
+//        try {
+//            writer = response.getWriter();
+//            writer.write("{\"success\":false,\"code\":401,\"message\":\"没有登录.\"}");
+//
+//        } catch (IOException e) {
+//        } finally {
+//            if (writer != null) {
+//                writer.close();
+//            }
+//        }
     }
 
     /**
      * 处理403.
      */
     private void forbidden(HttpServletResponse response) throws IOException {
-        //response.sendError(HttpServletResponse.SC_FORBIDDEN);// 403
-        response.getWriter()
-                .write("{\"success\":false,\"code\":403,\"message\":\"没有权限.\"}");
-        response.getWriter().close();
+//        //response.sendError(HttpServletResponse.SC_FORBIDDEN);// 403
+//        response.getWriter()
+//                .write("{\"success\":false,\"code\":403,\"message\":\"没有权限.\"}");
+//        response.getWriter().close();
     }
 }
