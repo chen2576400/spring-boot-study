@@ -14,66 +14,89 @@ public enum HandWorkEnum {
     TREATMENTSTATUSK("其他/其他"), TREATMENTSTATUSL("退回/改地址/延期"),
 
     //当前处理状态
-    HANDWORKSTATUSA("已完结"), HANDWORKSTATUSB("未完结"),HANDWORKSTATUSC("人工完结");
+    HANDWORKSTATUSA("已完结"), HANDWORKSTATUSB("未完结"), HANDWORKSTATUSC("人工完结");
 
-    String value;
+    String description;
 
-    HandWorkEnum(String value) {
-        this.value = value;
+    HandWorkEnum(String description) {
+        this.description = description;
     }
 
-    public static String getValue(int key) {
+
+    /**
+     * 
+     * @param handWorkEnum
+     * @return
+     */
+    public static String getdescription001(HandWorkEnum handWorkEnum) {
+        switch (handWorkEnum) {
+            case TREATMENTSTATUSA:
+
+            case HANDWORKSTATUSB:
+
+            case TREATMENTSTATUSB:
+
+            case TREATMENTSTATUSF1:
+                return handWorkEnum.description;
+
+            default:
+                return "未匹配";
+        }
+
+    }
+
+
+    public static String getdescription(int key) {
         switch (key) {
             case 1:
-                return HANDWORKSTATUSA.value;
+                return HANDWORKSTATUSA.description;
             case 0:
-                return HANDWORKSTATUSB.value;
+                return HANDWORKSTATUSB.description;
             case 10:
-                return HANDWORKSTATUSC.value;
+                return HANDWORKSTATUSC.description;
             case 11:
-                return TREATMENTSTATUSA.value;
+                return TREATMENTSTATUSA.description;
             case 12:
-                return TREATMENTSTATUSA1.value;
+                return TREATMENTSTATUSA1.description;
             case 21:
-                return TREATMENTSTATUSB.value;
+                return TREATMENTSTATUSB.description;
             case 22:
-                return TREATMENTSTATUSB1.value;
+                return TREATMENTSTATUSB1.description;
             case 31:
-                return TREATMENTSTATUSE.value;
+                return TREATMENTSTATUSE.description;
             case 32:
-                return TREATMENTSTATUSE1.value;
+                return TREATMENTSTATUSE1.description;
             case 33:
-                return TREATMENTSTATUSE2.value;
+                return TREATMENTSTATUSE2.description;
             case 34:
-                return TREATMENTSTATUSE3.value;
+                return TREATMENTSTATUSE3.description;
             case 35:
-                return TREATMENTSTATUSE4.value;
+                return TREATMENTSTATUSE4.description;
             case 36:
-                return TREATMENTSTATUSE5.value;
+                return TREATMENTSTATUSE5.description;
             case 37:
-                return TREATMENTSTATUSE6.value;
+                return TREATMENTSTATUSE6.description;
             case 41:
-                return TREATMENTSTATUSF.value;
+                return TREATMENTSTATUSF.description;
             case 42:
-                return TREATMENTSTATUSF1.value;
+                return TREATMENTSTATUSF1.description;
             case 43:
-                return TREATMENTSTATUSF2.value;
+                return TREATMENTSTATUSF2.description;
             case 51:
-                return TREATMENTSTATUSG.value;
+                return TREATMENTSTATUSG.description;
             case 52:
-                return TREATMENTSTATUSG1.value;
+                return TREATMENTSTATUSG1.description;
             case 61:
-                return TREATMENTSTATUSH.value;
+                return TREATMENTSTATUSH.description;
             case 71:
-                return TREATMENTSTATUSJ.value;
+                return TREATMENTSTATUSJ.description;
             case 81:
-                return TREATMENTSTATUSK.value;
+                return TREATMENTSTATUSK.description;
             case 91:
-                return TREATMENTSTATUSL.value;
+                return TREATMENTSTATUSL.description;
         }
         return "未匹配";
     }
-
 
 
 }
