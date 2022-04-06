@@ -300,6 +300,11 @@
         </dependency>
 
 
+        <!-- 参数校验  boot 2.3以上才需要加，2.3以下的spring-boot-starter-web 已经包含-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
 
     </dependencies>
     <build>

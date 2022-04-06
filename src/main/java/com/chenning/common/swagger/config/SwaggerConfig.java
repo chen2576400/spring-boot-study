@@ -27,6 +27,7 @@ import java.util.*;
  * @description: swagger配置
  * @author: Mr.Nchen
  * @create: 2022-03-23 10:53
+ * http://localhost:1025/swagger-ui/index.html
  **/
 @Configuration
 @EnableOpenApi

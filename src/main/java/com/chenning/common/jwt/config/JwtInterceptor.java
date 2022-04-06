@@ -33,9 +33,9 @@ public class JwtInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-//        if (1 == 1) {//登录默认放行
-//            return true;
-//        }
+        if (1 == 1) {//登录默认放行
+            return true;
+        }
 
         String token = request.getHeader(LoginConstant.HEADER_TOKEN);
         // 获取token: 1. header 2.cookie
