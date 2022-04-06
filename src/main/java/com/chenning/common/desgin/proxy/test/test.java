@@ -16,7 +16,8 @@ public class test {
     }
 
     public static void getWay001()throws Exception{
-        //        要想在原类方法上在进行再处理（如记录日志等），需要用构造方法把接口子类的实例传入，用method.invoke(原对象,args),则执行invoke里的函数原函数。
+        //这里代理对象IProxy 和 Ihello并无任何继承关系 却可以通过代理模式通过 Iproxy去代理调用Ihello接口，
+        //仔细观察使用代理之后 IProxy的真正实现类却没有执行，执行的是Ihello的
         IProxy hell01 = JdkProxy.getProxyWay001(ProxyImpl.class, new Hello01Impl());
         hell01.say("111");
         User user = new User();
@@ -32,7 +33,7 @@ public class test {
 
 
     public static void getWay002()throws Exception{
-
+        //这里才用的代理对象就是 Ihello本身，所以在代理接口里面反射直接method.invoke
         IHello proxyWay002 = JdkProxy.getProxyWay002(new Hello03Impl());
         proxyWay002.say("777");
         User user = new User();
