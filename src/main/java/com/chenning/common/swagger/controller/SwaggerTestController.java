@@ -74,15 +74,4 @@ public class SwaggerTestController {
         return Result.ok(user);
     }
 
-
-
-
-
-
-
-
-
-
-
-
 }
