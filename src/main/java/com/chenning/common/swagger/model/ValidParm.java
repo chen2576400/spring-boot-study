@@ -4,7 +4,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import javax.validation.Valid;
 import javax.validation.constraints.*;
+import java.util.List;
 
 /*      AssertFalse	带注释的元素必须为false
         AssertTrue	带注释的元素必须为true
@@ -70,8 +72,15 @@ public class ValidParm {
      * 手机号
      */
     @ApiModelProperty("手机号")
-    @Pattern(regexp ="(^[1][3,4,5,6,7,8,9][0-9]{9}$)", message = "手机号格式有误")
+    @Pattern(regexp = "(^[1][3,4,5,6,7,8,9][0-9]{9}$)", message = "手机号格式有误")
     @NotNull
     private String mobileNo;
+
+
+    @NotNull(message = "props不能为空")
+    @Size(min = 1, message = "至少要有一个属性")
+    @Valid  //不加这个只能校验@NotNull和@Size 无法校验 Prop内部属性
+    List<Prop> props;
+
 
 }

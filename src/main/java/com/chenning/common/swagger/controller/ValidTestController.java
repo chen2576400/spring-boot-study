@@ -23,7 +23,6 @@ import javax.validation.constraints.Size;
 @Api(tags = "swagger-Valid结合调用")
 @RestController
 @RequestMapping("/todo")
-@Validated
 public class ValidTestController {
 
 
@@ -38,9 +37,18 @@ public class ValidTestController {
 
 
 
+
     @ApiOperation("测试示例-valid对象参数校验")
     @PostMapping("/test5")
     public Result test5(@RequestBody @ApiParam @Valid ValidParm validParm) {
+        return Result.ok(validParm);
+    }
+
+
+
+    @ApiOperation("测试示例-valid嵌套对象参数校验")
+    @PostMapping("/test6")
+    public Result test6(@RequestBody @ApiParam @Valid ValidParm validParm) {
         return Result.ok(validParm);
     }
 }
