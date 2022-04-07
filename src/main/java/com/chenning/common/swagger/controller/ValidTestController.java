@@ -51,4 +51,12 @@ public class ValidTestController {
     public Result test6(@RequestBody @ApiParam @Valid ValidParm validParm) {
         return Result.ok(validParm);
     }
+
+
+
+    @ApiOperation("测试示例-避免常见异常是否纳入全局异常管理")
+    @PostMapping("/test7")
+    public Result test6(@RequestParam("parm1")Integer parm1) {
+        return Result.ok(parm1/0);
+    }
 }
