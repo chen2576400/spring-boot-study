@@ -36,9 +36,9 @@ public class FunctionDemon {
 
 
     // 返回一个组合函数，该函数结果应用到after函数中
-    public String func3(Function<User, Integer> function1, Function<Integer, String> function2, User user) {
+    public String func3(Function<User, Integer> function1, Function<Integer, String> function2,Function<String, String> function3, User user) {
         //首先 将user参数应用到  function1中, 再将function1的函数结果应用到 function2中
-        return function1.andThen(function2).apply(user);
+        return function1.andThen(function2).andThen(function3).apply(user);
     }
 
 
@@ -75,7 +75,7 @@ public class FunctionDemon {
         User user = new User();
         user.setUserId(1234);
         FunctionDemon integerStringFunctionDemon = new FunctionDemon();
-        String func3 = integerStringFunctionDemon.func3(User::getUserId, integer -> integer.toString(), user);
+        String func3 = integerStringFunctionDemon.func3(User::getUserId, integer -> integer.toString()+"func2",s -> {return  (s+"func3");}, user);
         System.out.println(func3);
     }
 

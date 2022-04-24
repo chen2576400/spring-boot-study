@@ -30,4 +30,9 @@ public class QueueTest {
         List<User> allUser = userService.findAllUser();
         sender.sender(allUser);
     }
+
+    @Test
+    public void sendMessageBytext() {
+        sender.senderBytest("你好，我是派睿究极打工仔");
+    }
 }

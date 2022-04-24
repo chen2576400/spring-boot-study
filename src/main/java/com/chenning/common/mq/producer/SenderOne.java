@@ -20,4 +20,9 @@ public class SenderOne {
     public void sender(List<User> list) {
         this.rabbitTemplate.convertAndSend("Direct", Constant.QUEUE_ONE, list);
     }
+
+
+    public void  senderBytest(String test){
+        this.rabbitTemplate.convertAndSend("Direct", Constant.QUEUE_TWO, test);
+    }
 }

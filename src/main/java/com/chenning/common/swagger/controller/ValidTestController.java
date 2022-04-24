@@ -8,10 +8,8 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -23,15 +21,17 @@ import javax.validation.constraints.Size;
 @Api(tags = "swagger-Valid结合调用")
 @RestController
 @RequestMapping("/todo")
+@Validated
 public class ValidTestController {
 
 
+    //单个参数校验时候 必须在controller上加 @Validated
     @ApiOperation("测试示例-valid单个参数校验")
     @ApiImplicitParam(name = "str", value = "接口参数变量", dataType = "String")
     @GetMapping("/test4")
-    public Result test4(@RequestParam("str") @Size(max = 3) String parm1,
+    public Result test4(
                         @NotBlank(message = "parm2不能为空") String parm2) {
-        return Result.ok(parm1);
+        return Result.ok(parm2);
     }
 
 

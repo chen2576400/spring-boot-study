@@ -63,4 +63,26 @@ public class RabbitMQConfig {
     public Binding bindingNotifyOfTaskThree() {  //使用Direct交换机
         return BindingBuilder.bind(TaskThree()).to(directExchange()).with(Constant.QUEUE_THREE).noargs();
     }
+
+
+
+
+
+
+
+
+
+    @Bean
+    public Queue TaskFour() {
+        return new Queue(Constant.QUEUE_FORE, true);
+    }
+
+    @Bean
+    public TopicExchange topicExchange() {
+        return new TopicExchange("pisx.tundra.topic");
+    }
+    @Bean
+    public Binding bindingNotifyOfPisx() {  //使用Direct交换机
+        return BindingBuilder.bind(TaskFour()).to(topicExchange()).with(Constant.QUEUE_FORE);
+    }
 }

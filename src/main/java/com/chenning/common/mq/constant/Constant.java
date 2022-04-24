@@ -12,5 +12,6 @@ public interface Constant {
 
     public static final String QUEUE_THREE = "queue_three";
 
+    public static final String QUEUE_FORE = "queue_fore";
 
 }
